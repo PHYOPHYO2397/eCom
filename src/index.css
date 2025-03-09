@@ -1,0 +1,16 @@
+* {
+  font-family: "Fira Sans Condensed", sans-serif;
+}
+
+.bg-navbar {
+  background-color: #f70c0c;
+}
+.navbar-brand,
+.nav-link {
+  color: white;
+}
+.active {
+  color: white !important;
+  font-weight: bold;
+  border-bottom: 3px solid;
+}
