@@ -1,7 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 
 const Navbar = () => {
+  const location = useLocation();
+  const pathname = location.pathname;
+
+  const { cartItems } = useContext(CartContext);
+  const totalItemCount = cartItems.reduce((sum, item) => {
+    return sum + item.count;
+  }, 0);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-navbar">
       <div className="container-fluid">
@@ -22,13 +31,23 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link to="/" className="nav-link active" aria-current="page">
+              <Link
+                to="/"
+                className={"nav-link " + (pathname === "/" && "active")}
+                aria-current="page"
+              >
                 Products
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/cart" className="nav-link">
-                Cart
+              <Link
+                to="/cart"
+                className={"nav-link " + (pathname === "/cart" && "active")}
+              >
+                Cart{""}
+                {totalItemCount > 0 && (
+                  <span className="badge bg-secondary">{totalItemCount}</span>
+                )}
               </Link>
             </li>
           </ul>
