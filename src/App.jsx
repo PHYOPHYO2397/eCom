@@ -4,6 +4,7 @@ import Products from "./pages/product/Products";
 import Cart from "./pages/cart/Cart.jsx";
 import { CartContextProvider } from "./context/CartContext.jsx";
 import React, { useState, useEffect } from "react";
+import Favourite from "./pages/favourite/Favourite.jsx";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -38,6 +39,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Products />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/favourite" element={<Favourite />} />
           </Routes>
         </Router>
       </CartContextProvider>

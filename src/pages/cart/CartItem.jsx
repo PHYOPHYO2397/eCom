@@ -22,6 +22,7 @@ const CartItem = ({ product, qty }) => {
             </button>
           </div>
           <input
+          
             type="text"
             defaultValue={qty}
             className="form-control"

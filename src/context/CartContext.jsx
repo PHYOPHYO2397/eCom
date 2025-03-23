@@ -5,10 +5,15 @@ export const CartContext = createContext(null);
 
 export const CartContextProvider = (props) => {
   const [cartItems, setCartItems] = useState([]);
+  const [favItems, setFavItems] = useState([]);
 
   useEffect(() => {
     console.log(cartItems);
   }, [cartItems]);
+
+  useEffect(() => {
+    console.log(favItems);
+  }, [favItems]);
 
   const addToCart = (id) => {
     const item = cartItems.find((item) => item.id === id);
@@ -25,6 +30,24 @@ export const CartContextProvider = (props) => {
         return eachItem;
       });
       setCartItems(updatedCart);
+    }
+  };
+
+  const addToFav = (id) => {
+    const item = favItems.find((item) => item.id === id);
+    if (!item) {
+      setFavItems([...favItems, { id, count: 1 }]);
+    }
+  };
+
+  const removeFromFav = (id) => {
+    const item = favItems.find((item) => item.id === id);
+    if (item) {
+      let updatedFavCart;
+      if (item.count === 1) {
+        updatedFavCart = favItems.filter((item) => item.id !== id);
+      }
+      setFavItems(updatedFavCart);
     }
   };
 
@@ -89,6 +112,10 @@ export const CartContextProvider = (props) => {
     removeFromCart,
     updateCartItemCount,
     getTotalAmount,
+    addToFav,
+    favItems,
+
+    removeFromFav,
   };
 
   return (

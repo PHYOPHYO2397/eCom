@@ -11,6 +11,12 @@ const Navbar = () => {
     return sum + item.count;
   }, 0);
 
+  const { favItems } = useContext(CartContext);
+
+  const favCount = favItems.reduce((sum, item) => {
+    return sum + item.count;
+  }, 0);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-navbar">
       <div className="container-fluid">
@@ -47,6 +53,19 @@ const Navbar = () => {
                 Cart{""}
                 {totalItemCount > 0 && (
                   <span className="badge bg-secondary">{totalItemCount}</span>
+                )}
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/favourite"
+                className={
+                  "nav-link " + (pathname === "/favourite" && "active")
+                }
+              >
+                Favourite
+                {favCount > 0 && (
+                  <span className="badge bg-secondary">{favCount}</span>
                 )}
               </Link>
             </li>
